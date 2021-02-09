@@ -1,0 +1,31 @@
+Find a solution to a given maze using right hand wall follower algorithm.
+
+
+
+C++ code
+mazesolver.cpp
+		Input: txt file with maze layout and txt file to store the maze solver
+		First, the maze is created as a static 2D array, and all 0's are empty cells,
+		while 1's are wall indicator.
+
+		Using right hand following algorithm, the solution is created.
+		i.e., having a direction of motion for an agent we follow a wall on the right and
+		move towards cells where there is no wall.
+		Once the last row is achieved, the agent stops.
+		The functionality of while loop and switch statement is used to achieve 
+		the deisred behaviour.
+
+		Output: void, but the solution for maze stored in txt file
+
+
+
+
+py code
+checksoln.py
+	
+	Input: txt file with maze layout and txt file with the maze solver
+	1. Create a numpy array with the maze, where and all 0's are empty cells and 1's are wall indicator.
+	2. Function is_valid: to check if each position change is valid (i.e. you move one position at a time, 
+	don’t go through a wall, and stay within the bounds of the maze)
+	3. Move along maze using maze solution file and check whether every transition is valid and
+	whether the bottom of maze is achieved.

@@ -1,0 +1,39 @@
+PART I.
+
+Movies 2 and 3 have high correlation, i.o. reviews 4,5, while movie 1 has low reviews: 1,2 mostly.
+Hence with this data it is easy to check whether the cosine similarity is a valid measure.
+
+As a reference solution I used numpy implementation for cosine similarity for shifted reviews vectors.
+
+
+PART II. 
+
+def cos_similarity(all_movies, a, b, user_thresh):
+###	function for computing cosine similarity for shifted review vectors that have mean at 0
+
+def cossim_extra(ra, rb, mean_ra, mean_rb):
+### computes the enunmerator and denominator of cos similarity, aids cos_similarity function
+
+def add_entry_cossim(cossim_movies, a, b, cos_sim, n_us):
+### function to add new tuple for a movie a w.r.t. movie b into a dictionary of tuples for the output file
+
+
+$ python3 similarity.py ml-100k/u.data similarities.txt
+Input MovieLens file: ml-100k/u.data
+Output file for similarity data: similarities.txt
+Minimum number of common users: 5
+Read 100000 lines with total of 1682 movies and 943 users
+Computed similarities in 14.598 seconds
+
+
+$ head -n 10 similarities.txt
+1 (885, 0.9999996470589481, 6)
+2 (1056, 0.99999979166671, 5)
+3 (1081, 0.9758998348533533, 5)
+4 (1473, 0.8910418776972082, 5)
+5 (1050, 0.9999991666673612, 5)
+6 (1017, 0.9931831385010966, 5)
+7 (968, 0.9999993000004901, 7)
+8 (590, 0.8911325239732032, 6)
+9 (113, 0.9999996428572704, 5)
+10 (493, 0.9999997142857959, 8)

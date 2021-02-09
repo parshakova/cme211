@@ -1,0 +1,102 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fullpage}
+
+% Python Code
+\usepackage{listings, textcomp, color, verbatim}
+\definecolor{deepgreen}{rgb}{0,0.4,0}
+
+\lstdefinestyle{python}{
+		language=python,
+		basicstyle=\color{black}\ttfamily\footnotesize,
+		stringstyle=\color{deepgreen}\slshape,
+		commentstyle=\color{gray}\slshape,
+		keywordstyle=\color{red}\bf,
+		emphstyle=\color{blue}\bf,
+		tabsize=2,
+		%%%%%%%%%%%%%%%
+		showstringspaces=false,
+    emph={access,and,break,class,continue,def,del,elif,else,except,exec,finally,for,from,global,if,import,in,i s,lambda,not,or,pass,print,raise,return,try,while,as},
+		upquote=true,
+		morecomment=[s]{"""}{"""},
+		literate=*
+		{:}{{\textcolor{blue}:}}{1}%
+		{=}{{\textcolor{blue}=}}{1}%
+		{-}{{\textcolor{blue}-}}{1}%
+		{+}{{\textcolor{blue}+}}{1}%
+		{*}{{\textcolor{blue}*}}{1}%
+		{!}{{\textcolor{blue}!}}{1}%
+		{(}{{\textcolor{blue}(}}{1}%
+		{)}{{\textcolor{blue})}}{1}%
+		{[}{{\textcolor{blue}[}}{1}%
+		{]}{{\textcolor{blue}]}}{1}%
+		{<}{{\textcolor{blue}<}}{1}%
+		{>}{{\textcolor{blue}>}}{1},%
+		%%%%%%%%%%%%%%%%
+		aboveskip=\baselineskip,
+		xleftmargin=20pt, xrightmargin=15pt,
+		numbers=left, numberstyle=\tiny
+}
+\lstnewenvironment{python}{\lstset{style=python}}{}
+\newcommand{\inputsamplepython}[1]{\lstinputlisting[style=python]{../ClassCodes/#1}}
+\newcommand{\inputpython}[1]{\lstinputlisting[style=python]{#1}}
+
+
+\begin{document}
+
+
+\begin{center}
+    Tetiana Parshakova 
+\end{center}
+\begin{center}
+    \Large CME211 HW4
+\end{center}
+
+\section{Truss class}
+
+
+Truss is a class for computing truss beams forces for a given
+	configuration of joints and beams.
+
+By using the equilibrium equations,  we form a linear system and obtain the
+	necessary unknowns, i.e.
+\begin{align*}
+    & \sum_{j \in N(i)} B_j \cos(theta_j) + R_i^1 \mathbf{1}(i \text{ rigid}) = F^1_i,\\
+    & \sum_{j \in N(i)} B_j \sin(theta_j) + R_i^2 \mathbf{1}(i \text{ rigid}) = F^2_i.
+\end{align*}
+
+
+\begin{python}
+def compute_forces(self)
+\end{python}
+computes the beam forces and support forces by forming a sparse linear system. Populates \texttt{self.beam\_forces} variable. We use CSR format for the sparse matrix, and use \texttt{A = csr\_matrix((vals, col\_idx, row\_idx), shape=(2*njoints, nbeam+2*nR))} to solve the sparse system from \texttt{scipy}.
+
+
+\begin{python}
+def read_data(self, fjoints, fbeam)
+\end{python}
+Reads data from joints file and beam file. Returns the output lists of tuples. Joints and beams start from 1 and continue to increase consecutively; and list of neighboring joints
+\begin{python}
+			joints_list[i] = (xi, yi, Fix, Fiy, Ri!=0)
+			beams_list[k] = (i,j)
+			connections[i] = [(k,j)]
+\end{python}
+
+
+
+\begin{python}
+def get_angle(self, x1, x2)
+\end{python}
+Returns the angle of inclination of the beam. Used to make the beam force parallel to the beam.
+
+
+
+\begin{python}
+def PlotGeometry(self)
+\end{python}
+Plot joints and beams and stores them into a file.
+
+\end{document}

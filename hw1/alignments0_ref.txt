@@ -1,0 +1,7 @@
+CCC -1
+CAT 0 3
+CGA 7
+ATC 1
+TAC 5
+
+

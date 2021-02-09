@@ -1,0 +1,56 @@
+writeup:
+
+#1:
+
+python3 generatedata.py 1000 600 50 "ref_1.txt" "reads_1.txt"
+reference length: 1000
+number reads: 600
+read length: 50
+aligns 0: 0.160000
+aligns 1: 0.743333
+aligns 2: 0.096667
+
+python3 generatedata.py 10000 6000 50 "ref_2.txt" "reads_2.txt"
+reference length: 10000
+number reads: 6000
+read length: 50
+aligns 0: 0.150167
+aligns 1: 0.746333
+aligns 2: 0.103500
+
+python3 generatedata.py 100000 60000 50 "ref_3.txt" "reads_3.txt"
+reference length: 100000
+number reads: 60000
+read length: 50
+aligns 0: 0.151417
+aligns 1: 0.748117
+aligns 2: 0.100467
+
+1) condidered all types of alignment, specifically: 0, 1, 2. Hence, if the code works properly on this small data, it will extend to other cases, because of the simplicity of the task for finding a substring and adjusting the corresponding index for the second match.
+2) no, because the type of alignment was selected probabilistically for every read. whenever we choose alignment 1 it can have more alignments since we don't check whether this alignemtnt is unique. hence, the proportions are not exact
+3) spend around 2 hours, most of the time understanding the specifics of the task.
+
+#2
+
+python3 processdata.py ref_1.txt reads_1.txt align_1.txt
+aligns 0: 0.160000
+aligns 1: 0.743333
+aligns 2: 0.096667
+elapsed time: 0.002871
+
+python3 processdata.py ref_2.txt reads_2.txt align_2.txt
+aligns 0: 0.150167
+aligns 1: 0.746333
+aligns 2: 0.103500
+elapsed time: 0.184663
+
+python3 processdata.py ref_3.txt reads_3.txt align_3.txt
+aligns 0: 0.151417
+aligns 1: 0.748117
+aligns 2: 0.100467
+elapsed time: 17.482976
+
+1) only aligns 0 match exactly with the computed values. this is because when we created aligns 1, we did not make sure that a specific substring occurs only once, it is in reality 1 or more times. therefore the aligns for 1 are less than the one that we estimated
+2) we observe that the rate is approximately 100x  (ref2_len_time/ref1_len_time=62 and ref3_len_time/ref2_len_time=94), i.e. when the ref_len increases by 10x. Also since human genome is approximately 3 billion base pairs, and the typical coverage = 30 = (50*nreads)/(3*10**9) => ref1_len_time = 2.8*10**(-3)s leads to
+time(ref_len=10**9)  = time(ref_len=10**3)*10**(12)=2.8**10**9s = 32407 days = 90 years, which is unfeasible
+3) 2 hours 

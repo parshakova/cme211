@@ -1,0 +1,45 @@
+hw6.cpp 
+
+	void ReadGrayscaleJPEG(std::string filename,
+	                       boost::multi_array<unsigned char, 2>& img);
+		- a function for reading image into boost array
+
+	void WriteGrayscaleJPEG(std::string filename,
+	                        boost::multi_array<unsigned char, 2>& img);
+		- stores a boost array into an image 
+
+
+
+
+
+image.cpp
+contains a class iamge with two attributes:
+	std::string input_file;
+		- image jpg file
+	boost::multi_array<unsigned char, 2> img;
+		-  image array
+
+the following methods:
+	void Save(std::string filename)
+		- saves an image into boost array
+
+	void Convolution(boost::multi_array<unsigned char,2>& input,
+					boost::multi_array<unsigned char,2>& output,
+					boost::multi_array<float,2>& kernel);
+		- performs a convolution on a given image with a given kernel
+		- stores result of a convolution into output boost array
+
+	void BoxBlur(int kernel_size)
+		- changes an image data attirubute by blurring it with a kernel of a given size
+
+	unsigned int Sharpness()
+		- computes and returns a sharpness of an image data attirubute
+
+
+main.cpp
+	1) Loads the original image stanford.jpg and computes and outputs the sharpness.
+    2) For kernel sizes of 3, 7, . . . , 23, 27 reload the original image by instantiating 
+    a new instance of yourimage class, 
+        - blur the image
+        - compute and output the sharpness of the resulting image.
+        - store each blurred version of the image
